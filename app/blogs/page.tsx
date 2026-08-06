@@ -9,13 +9,7 @@ const Blogs = async ({
 }) => {
 
   const { query } = await searchParams
-  const allBlogs = getBlogs()
-  
-  const blogs = query
-    ? allBlogs.filter(blog => 
-        blog.title.toLowerCase().includes(query.toLowerCase())
-      )
-    : allBlogs
+  const blogs = await getBlogs(query)
 
   return ( 
   <div>
