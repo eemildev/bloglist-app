@@ -18,6 +18,7 @@ export type UserFormState = {
     username: string;
     name: string;
   };
+  success?: boolean;
 };
 
 export const registerUser = async (prevState: UserFormState, formData: FormData) => {
@@ -35,7 +36,7 @@ export const registerUser = async (prevState: UserFormState, formData: FormData)
 
   if (Object.keys(errors).length > 0) {
     console.log("Validation errors:", errors);
-    return { errors, values: { username, name } };
+    return { errors, values: { username, name }, success: false };
   }
 
   try {
@@ -44,7 +45,8 @@ export const registerUser = async (prevState: UserFormState, formData: FormData)
     if (existingUser.length > 0) {
       return {
         errors: { username: "This username is already taken." },
-        values: { username, name }
+        values: { username, name },
+        success: false
       };
     }
 
@@ -56,9 +58,10 @@ export const registerUser = async (prevState: UserFormState, formData: FormData)
     console.error("Database error during registration:", error);
     return {
       errors: { _form: "Something went wrong creating your account. Please try again later." },
-      values: { username, name }
+      values: { username, name },
+      success: false
     };
   }
 
-  redirect("/login")
+  return { errors: {}, values: { username, name }, success: true }
 }

@@ -12,17 +12,23 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   return (
-    <div>
-      <h2>{blog.title}</h2>
-      <p>{blog.author}</p>
-      <Link href={blog.url} target="_blank" rel="noreferrer">
-        {blog.url}
-      </Link>
-      <p>{blog.likes} likes</p>
-      <form action={addLikeToBlog}>
-        <input type="hidden" name="id" value={blog.id} />
-        <button type="submit">like</button>
-      </form>
+    <div className="blog-card">
+      <div className="">
+        <h2>Title:{blog.title}</h2>
+        <p>author: {blog.author}</p>
+        <p>likes: {blog.likes}</p>
+      </div>
+      <div className="flex gap-2">
+        <Link href={blog.url} target="_blank" rel="noreferrer">
+          <button className="btn">Visit Blog</button>
+        </Link>
+        <form action={addLikeToBlog}>
+          <input type="hidden" name="id" value={blog.id} />
+          <button className="btn" type="submit">
+            Like Blog
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

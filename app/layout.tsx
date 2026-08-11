@@ -1,19 +1,27 @@
-import NavBar from "./components/NavBar";
-import AuthSessionProvider from "./components/SessionProvider";
+import "./globals.css"
+import AuthSessionProvider from "./components/SessionProvider"
+import NavBar from "./components/NavBar"
+import { NotificationProvider } from "./components/NotificationContext"
+import Notification from "./components/Notification"
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen bg-background text-foreground">
         <AuthSessionProvider>
-          <NavBar />
-          {children}
+          <NotificationProvider>
+            <NavBar />
+            <main className="container mx-auto">
+              <Notification />
+              {children}
+            </main>
+          </NotificationProvider>
         </AuthSessionProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -28,14 +28,18 @@ export default function BlogSearch({ searchQuery }: { searchQuery: string }) {
   };
 
   return (
-    <div>
-      <form onSubmit={searchBlogs}>
-        <div>
-          <label>
-            Title
-            <input type="text" name="search" defaultValue={searchQuery} />
+    <div className="flex items-center justify-between">
+      <form onSubmit={searchBlogs} className="w-1/2">
+        <div className="flex flex-col">
+          <label htmlFor="search" className="text-sm font-medium text-heading">
+            Search
           </label>
-          <button type="submit">Search</button>
+          <div className="flex items-center gap-2">
+            <input id="search" name="search" defaultValue={searchQuery} />
+            <button className="btn" type="submit">
+              Search
+            </button>
+          </div>
         </div>
       </form>
     </div>

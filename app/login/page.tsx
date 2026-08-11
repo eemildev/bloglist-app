@@ -30,20 +30,22 @@ export default function LoginPage() {
     <div>
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Username
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="flex flex-col">
+          <label htmlFor="username" className="text-sm font-medium text-heading">
+            Username</label>
             <input type="text" name="username" required />
-          </label>
+          
         </div>
-        <div>
-          <label>
-            Password
+        <div className="flex flex-col">
+          <label htmlFor="password" className="text-sm font-medium text-heading">
+            Password </label>
             <input type="password" name="password" required />
-          </label>
+         
         </div>
-        <button type="submit">Login</button>
+        <button className="btn" type="submit">
+          Login
+        </button>
       </form>
     </div>
   )

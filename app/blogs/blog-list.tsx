@@ -13,10 +13,14 @@ type Blog = {
 const Bloglist = ({ blogs }: { blogs: Blog[] }) => {
   return (
     <div>
-      <ul>
+      <ul className="flex flex-col gap-2">
         {blogs.map(blog => (
           <li key={blog.id}>
-            <Link href={`/blogs/${blog.id}`}>{blog.title}</Link> ({blog.likes} likes)
+            <Link href={`/blogs/${blog.id}`}>
+              <button className="blog-item">
+                {blog.title}
+              </button>
+            </Link> 
           </li>
         ))}
       </ul>

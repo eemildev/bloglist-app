@@ -17,6 +17,7 @@ export type blogFormState = {
     author: string,
     url: string
   }
+  success?: boolean
 };
 
 export const createBlog = async (
@@ -30,7 +31,7 @@ export const createBlog = async (
 
   const title = (formData.get("title") as string)?.trim()
   const author = (formData.get("author") as string)?.trim()
-  const url = (formData.get("URL") as string)?.trim()
+  const url = (formData.get("url") as string)?.trim()
 
   const errors: blogFormState["errors"] = {}
 
@@ -40,7 +41,7 @@ export const createBlog = async (
 
   if (Object.keys(errors).length > 0) {
     console.log("Validation errors:", errors);
-    return { errors, values: { title, author, url } };
+    return { errors, values: { title, author, url }, success: false };
   }
 
   try {
@@ -49,12 +50,13 @@ export const createBlog = async (
     console.error("Database error during blog creation:", error);
     return {
       errors: { _form: "Something went wrong creating your blog. Please try again later." },
-      values: { title, author, url }
+      values: { title, author, url },
+      success: false
     };
   }
 
   revalidatePath("/blogs")
-  redirect("/blogs")
+  return { errors: {}, values: { title, author, url }, success: true }
 }
 
 export const addLikeToBlog = async (formData: FormData) => {
