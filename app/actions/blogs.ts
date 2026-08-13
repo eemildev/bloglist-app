@@ -60,6 +60,11 @@ export const createBlog = async (
 }
 
 export const addLikeToBlog = async (formData: FormData) => {
+  const session = await auth()
+  if (!session) {
+    return { error: "You are not logged in" }
+  }
+
   const id = Number(formData.get("id"))
   await likeBlog(id)
   revalidatePath(`/blogs/${id}`)

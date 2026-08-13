@@ -36,3 +36,15 @@ export const getUserWithBlogs = async (id: number) => {
     with: { blogs: true },
   })
 }
+
+export const getUserWithReadingList = async (id: number) => {
+  if (!id) {
+    return null;
+  }
+  return db.query.users.findFirst({
+    where: eq(users.id, id),
+    with: { readingList: true },
+  })
+}
+
+
