@@ -38,10 +38,34 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           id: String(user.id),
           name: user.name,
           email: user.username,
+          apiToken: user.apiToken,
         }
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user, trigger, session }) {
+      // Initial sign in
+      if (user) {
+        token.id = user.id
+        token.apiToken = user.apiToken
+      }
+
+      // 2. Called when update() is triggered from the client
+ if (trigger === "update" && session?.apiToken) {
+      token.apiToken = session.apiToken
+    }
+
+      return token
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string
+        session.user.apiToken = token.apiToken as string
+      }
+      return session
+    },
+  },
   pages: {
     signIn: "/login",
   },

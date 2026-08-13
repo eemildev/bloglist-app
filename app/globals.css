@@ -28,11 +28,11 @@
 }
 
 .blog-item {
- @apply rounded-md px-3 py-2 text-sm font-medium bg-gray-200 hover:bg-gray-300 text-black w-full text-left cursor-pointer;
+ @apply rounded-md px-3 py-2 text-sm font-medium bg-gray-800 hover:bg-gray-600 text-white w-full text-left cursor-pointer;
 }
 
 .blog-card {
-  @apply rounded-md px-3 py-2 text-sm font-medium bg-gray-200 text-black w-full text-left flex flex-col gap-2;
+  @apply rounded-md px-3 py-2 text-sm font-medium bg-gray-800 text-white w-full text-left flex flex-col gap-2;
 }
 
 @layer base {

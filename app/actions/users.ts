@@ -1,6 +1,5 @@
 "use server"
 
-import { redirect } from "next/navigation"
 import bcrypt from "bcryptjs"
 import { db } from "../../db"
 import { users } from "../../db/schema"

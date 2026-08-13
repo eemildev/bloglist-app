@@ -15,6 +15,7 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   name: text("name").notNull(),
   passwordHash: text("password_hash").notNull().default(""),
+  apiToken: text("api_token").notNull().default(""),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({

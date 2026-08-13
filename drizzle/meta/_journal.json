@@ -8,6 +8,13 @@
       "when": 1785995737236,
       "tag": "0000_natural_pestilence",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786467432400,
+      "tag": "0001_violet_inertia",
+      "breakpoints": true
     }
   ]
 }

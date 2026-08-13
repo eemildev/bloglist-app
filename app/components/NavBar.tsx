@@ -36,10 +36,10 @@ const NavBar = () => {
                 create new
               </button>
             </Link>
-            <button
-              className="btn"
-              onClick={() => signOut()}
-            >
+            <Link href="/me">
+              <button className={getButtonClass("/me")}>me</button>
+            </Link>
+            <button className="btn" onClick={() => signOut()}>
               logout
             </button>
           </>
