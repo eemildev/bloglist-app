@@ -20,8 +20,8 @@ export const users = pgTable("users", {
 
 export const readingList = pgTable("reading_list", {
   id: serial("id").primaryKey(),
-  userId: serial("user_id").notNull().references(() => users.id),
-  blogId: serial("blog_id").notNull().references(() => blogs.id),
+  userId: integer("user_id").notNull().references(() => users.id),
+  blogId: integer("blog_id").notNull().references(() => blogs.id),
   read: boolean("read").notNull().default(false),
 })
 

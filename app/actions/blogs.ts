@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { addBlog, likeBlog } from "../services/blogs"
 import { auth } from "@/auth"
+import { createReadingListItem } from "../services/reading-list"
 
 export type blogFormState = {
   errors: {
@@ -45,7 +46,8 @@ export const createBlog = async (
   }
 
   try {
-    await addBlog(title, author, url)
+    const blog = await addBlog(title, author, url)
+    await createReadingListItem(blog.id)
   } catch (error) {
     console.error("Database error during blog creation:", error);
     return {
@@ -54,6 +56,8 @@ export const createBlog = async (
       success: false
     };
   }
+
+  
 
   revalidatePath("/blogs")
   return { errors: {}, values: { title, author, url }, success: true }
