@@ -26,7 +26,7 @@ const NewBlog = () => {
   }, [state, showNotification, router]);
   return (
     <div>
-      <h2>Create a new blog</h2>
+      <h1>Create a new blog</h1>
       <form  className="space-y-4" action={formAction}>
         <div className="flex flex-col">
           <label htmlFor="title" className="text-sm font-medium text-heading">

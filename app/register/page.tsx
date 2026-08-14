@@ -4,8 +4,14 @@ import { useActionState, useEffect } from "react";
 import { registerUser } from "../actions/users";
 import { useNotification } from "../components/NotificationContext";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function RegisterPage() {
+
+  const { data: session } = useSession()
+  
+    
+    
   const initialState = {
     errors: {
       username: undefined,
@@ -29,6 +35,10 @@ export default function RegisterPage() {
         router.push("/login");
       }
     }, [state, showNotification, router]);
+
+    if (session) {
+      return <p>You are already logged in. </p>
+    }
 
   return (
     <div>

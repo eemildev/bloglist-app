@@ -10,7 +10,7 @@ const Users = async () => {
 
   return (
     <div>
-      <h2>Users</h2>
+      <h1>Users</h1>
       <ul className="flex flex-col gap-2">
         {users.map((user) => (
           <li key={user.id}>

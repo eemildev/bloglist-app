@@ -9,6 +9,11 @@ export const getUsers = async () => {
 export const getUserById = async (id: number) => {
   return db.query.users.findFirst({
     where: eq(users.id, id),
+    columns: {
+      id: true,
+      username: true,
+      name: true
+    }
   })
 }
 
@@ -33,6 +38,11 @@ export const getBlogsByUserId = async (userId: number) => {
 export const getUserWithBlogs = async (id: number) => {
   return db.query.users.findFirst({
     where: eq(users.id, id),
+     columns: {
+      id: true,
+      username: true,
+      name: true
+    },
     with: { blogs: true },
   })
 }

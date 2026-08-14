@@ -12,8 +12,10 @@ const Blogs = async ({
 
   return (
     <div className="flex flex-col gap-4">
-      <h2>Blogs</h2>
+      <div>
+         <h1>Blogs</h1>
       <BlogSearch searchQuery={query || ""} />
+      </div>
       <Bloglist blogs={blogs} />
     </div>
   );

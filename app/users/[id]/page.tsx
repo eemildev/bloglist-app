@@ -13,7 +13,7 @@ const UserPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div className="gap-4 flex flex-col">
       <div>
-        <h2>{user.name}</h2>
+        <h1>{user.name}</h1>
         <p>Username: {user.username}</p>
       </div>
       <div>

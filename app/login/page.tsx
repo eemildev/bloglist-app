@@ -3,8 +3,15 @@
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { useSession } from "next-auth/react";
 
 export default function LoginPage() {
+
+  const { data: session } = useSession()
+
+
+ 
+
   const router = useRouter()
   const [error, setError] = useState("")
 
@@ -24,11 +31,15 @@ export default function LoginPage() {
       router.push("/")
       router.refresh()
     }
+  } 
+  
+  if (session) {
+    return <p>You are already logged in. </p>
   }
 
   return (
     <div>
-      <h2>Login</h2>
+      <h1>Login</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="flex flex-col">

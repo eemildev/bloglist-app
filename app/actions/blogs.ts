@@ -57,8 +57,6 @@ export const createBlog = async (
     };
   }
 
-  
-
   revalidatePath("/blogs")
   return { errors: {}, values: { title, author, url }, success: true }
 }

@@ -72,7 +72,7 @@ export default function MyProfile({ readingList }: MyProfileProps) {
   return (
     <div className="gap-4 flex flex-col">
       <div className="gap-2 flex flex-col">
-        <h2>My Profile</h2>
+        <h1>My Profile</h1>
         <p>Name: {session.user?.name}</p>
         <p>Username: {session.user?.email}</p>
       </div>
