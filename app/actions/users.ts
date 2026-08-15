@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { db } from "../../db"
 import { users } from "../../db/schema"
 import { eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
 
 export type UserFormState = {
   errors: {
@@ -62,5 +63,6 @@ export const registerUser = async (prevState: UserFormState, formData: FormData)
     };
   }
 
+  revalidatePath("/users") // Revalidate the users page to reflect the new user
   return { errors: {}, values: { username, name }, success: true }
 }

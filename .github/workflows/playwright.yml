@@ -10,6 +10,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
 
     steps:
       - uses: actions/checkout@v4
@@ -49,9 +51,6 @@ jobs:
 
       - name: Run database migrations
         run: npx drizzle-kit push
-        env:
-          # This tells Node.js it is in test mode just for this step
-          NODE_ENV: test
 
       - name: Run Playwright tests
         run: npx playwright test
