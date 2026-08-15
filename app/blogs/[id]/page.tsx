@@ -27,11 +27,11 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     : false;
 
   return (
-    <div className="blog-card">
+    <div data-testid="blog-detail" className="blog-card">
       <div className="">
-        <h2>Title:{blog.title}</h2>
-        <p>author: {blog.author}</p>
-        <p>likes: {blog.likes}</p>
+        <h2 data-testid="blog-title">Title:{blog.title}</h2>
+        <p data-testid="blog-author">author: {blog.author}</p>
+        <p data-testid="blog-likes">{blog.likes} likes</p>
       </div>
 <BlogActions blog={blog} isInReadingList={isInReadingList} />
     </div>

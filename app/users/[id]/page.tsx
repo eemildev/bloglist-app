@@ -22,9 +22,14 @@ const UserPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           <ul className="flex flex-col gap-2">
             {user.blogs.map((blog) => (
               <li key={blog.id}>
-                <Link href={`/blogs/${blog.id}`}>
-                  <button className="blog-item">{blog.title}</button>
-                </Link>
+                  <Link href={`/blogs/${blog.id}`} className="block">
+              <button className="blog-item">
+                <span className="truncate">{blog.title}</span>
+                <span className="ml-2 shrink-0 rounded-md bg-blue-800 px-2 py-1">
+                  {blog.likes} likes
+                </span>
+              </button>
+            </Link>
               </li>
             ))}
           </ul>

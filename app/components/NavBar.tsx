@@ -8,7 +8,7 @@ const NavBar = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
   const baseButtonClass =
-    "rounded-md px-3 py-2 text-sm font-medium transition-colors text-black cursor-pointer";
+    "rounded-md px-2.5 py-2 text-xs sm:text-sm font-medium transition-colors text-black cursor-pointer";
   const defaultButtonClass = `${baseButtonClass} hover:bg-gray-600 text-white`;
   const activeButtonClass = `${baseButtonClass} bg-gray-900 font-bold text-white`;
 
@@ -16,43 +16,44 @@ const NavBar = () => {
     pathname === path ? activeButtonClass : defaultButtonClass;
 
   return (
-    <nav className="flex gap-4 p-4 mb-8 bg-gray-800">
-      <div className="justify-start flex gap-4">
-        <Link href="/">
-          <button className={getButtonClass("/")}>Home</button>
-        </Link>
-        <Link href="/blogs">
-          <button className={getButtonClass("/blogs")}>blogs</button>
-        </Link>
-        <Link href="/users">
-          <button className={getButtonClass("/users")}>users</button>
-        </Link>
-      </div>
-      <div className="flex justify-end gap-4">
-        {session ? (
-          <>
-            <Link href="/blogs/new">
-              <button className={getButtonClass("/blogs/new")}>
+    <nav className="mb-8 bg-gray-800">
+      <div className="mx-auto flex max-w-6xl gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:px-8">
+        <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+          <Link href="/" className={getButtonClass("/")}>
+            Home
+          </Link>
+          <Link href="/blogs" className={getButtonClass("/blogs")}>
+            blogs
+          </Link>
+          <Link href="/users" className={getButtonClass("/users")}>
+            users
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-end">
+          {session ? (
+            <>
+              <Link href="/blogs/new" className={getButtonClass("/blogs/new")}>
                 create new
+              </Link>
+              <Link href="/me" className={getButtonClass("/me")}>
+                me
+              </Link>
+              <button className="btn" onClick={() => signOut()}>
+                logout
               </button>
-            </Link>
-            <Link href="/me">
-              <button className={getButtonClass("/me")}>me</button>
-            </Link>
-            <button className="btn" onClick={() => signOut()}>
-              logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link href="/login">
-              <button className={getButtonClass("/login")}>login</button>
-            </Link>
-            <Link href="/register">
-              <button className={getButtonClass("/register")}>register</button>
-            </Link>
-          </>
-        )}
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={getButtonClass("/login")}>
+                login
+              </Link>
+              <Link href="/register" className={getButtonClass("/register")}>
+                register
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

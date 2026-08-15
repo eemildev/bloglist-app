@@ -71,15 +71,17 @@ export default function MyProfile({ readingList }: MyProfileProps) {
 
   return (
     <div className="gap-4 flex flex-col">
-      <div className="gap-2 flex flex-col">
+      <div data-testid="user-profile" className="gap-2 flex flex-col">
         <h1>My Profile</h1>
-        <p>Name: {session.user?.name}</p>
-        <p>Username: {session.user?.email}</p>
+        <p data-testid="user-name">Name: {session.user?.name}</p>
+        <p data-testid="user-username">Username: {session.user?.email}</p>
       </div>
-      <div className="gap-4 flex flex-col">
-        <div>
+      <div data-testid="reading-list-section" className="gap-4 flex flex-col">
+        <div data-testid="unread-section">
           <h2>Reading List</h2>
-          <h4 className="text-lg font-semibold mb-2">Unread ({unread.length})</h4>
+          <h4 className="text-lg font-semibold mb-2">
+            Unread ({unread.length})
+          </h4>
           {unread.length > 0 ? (
             <ul className="flex flex-col gap-2">
               {unread.map((item) => (
@@ -87,17 +89,16 @@ export default function MyProfile({ readingList }: MyProfileProps) {
                   className="blog-card flex-row justify-between"
                   key={item.blogId}
                 >
-                  <Link href={`/blogs/${item.blogId}`}>
-                    <button
-                      className="btn bg-gray-800 hover:bg-gray-600"
-                      type="button"
-                    >
-                      {item.blog.title}
-                    </button>
+                  <Link
+                    href={`/blogs/${item.blogId}`}
+                    className="btn bg-gray-800 hover:bg-gray-600"
+                    type="button"
+                  >
+                    {item.blog.title}
                   </Link>
                   <form action={handleMarkAsRead}>
                     <input type="hidden" name="id" value={item.blogId} />
-                    <button type="submit" className="btn">
+                    <button data-testid="mark-read-" type="submit" className="btn">
                       Mark as Read
                     </button>
                   </form>
@@ -105,10 +106,12 @@ export default function MyProfile({ readingList }: MyProfileProps) {
               ))}
             </ul>
           ) : (
-            <p>You haven&apos;t added any blogs to your reading list yet.</p>
+            <div data-testid="empty-reading-list">
+              <p data-testid="no-unread-blogs">You haven&apos;t added any blogs to your reading list yet.</p>
+            </div>
           )}
         </div>
-        <div>
+        <div data-testid="read-section">
           <h4 className="text-lg font-semibold mb-2">Read ({read.length})</h4>
           {read.length > 0 ? (
             <ul className="flex flex-col gap-2">
@@ -117,29 +120,29 @@ export default function MyProfile({ readingList }: MyProfileProps) {
                   className="blog-card flex-row justify-between"
                   key={item.blogId}
                 >
-                  <Link href={`/blogs/${item.blogId}`}>
-                    <button
-                      className="btn bg-gray-800 hover:bg-gray-600"
-                      type="button"
-                    >
-                      {item.blog.title}
-                    </button>
+                  <Link
+                    href={`/blogs/${item.blogId}`}
+                    className="btn bg-gray-800 hover:bg-gray-600"
+                    type="button"
+                  >
+                    {item.blog.title}
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
-            <p>You haven&apos;t marked any blogs as read yet.</p>
+            <p data-testid="no-read-blogs">You haven&apos;t marked any blogs as read yet.</p>
           )}
         </div>
       </div>
 
-      <div>
-        <h2>API Token</h2>
-        <p>Current token: {apiToken ?? "No token generated yet"}</p>
+      <div data-testid="api-token-section">
+        <h2 data-testid="token-display">API Token</h2>
+        {apiToken && <p data-testid="api-token">Current token: {apiToken}</p>}
+        {!apiToken && <p data-testid="no-token-message">Current token: {"No token generated yet"}</p>}
       </div>
       <form action={formAction}>
-        <button className="btn" type="submit">
+        <button data-testid="generate-token-button" className="btn" type="submit">
           Generate new token
         </button>
       </form>

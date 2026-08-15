@@ -35,8 +35,8 @@ export default function BlogSearch({ searchQuery }: { searchQuery: string }) {
             Search
           </label>
           <div className="flex items-center gap-2">
-            <input id="search" name="search" defaultValue={searchQuery} />
-            <button className="btn" type="submit">
+            <input data-testid="filter-input"id="search" name="search" defaultValue={searchQuery} />
+            <button data-testid="search-button" className="btn" type="submit">
               Search
             </button>
           </div>

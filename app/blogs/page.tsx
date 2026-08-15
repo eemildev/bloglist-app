@@ -10,14 +10,13 @@ const Blogs = async ({
   const { query } = await searchParams;
   const blogs = await getBlogs(query);
 
-  return (
+  return (<div>
+     <h1>Blogs</h1>
     <div className="flex flex-col gap-4">
-      <div>
-         <h1>Blogs</h1>
       <BlogSearch searchQuery={query || ""} />
-      </div>
       <Bloglist blogs={blogs} />
-    </div>
+    </div> 
+     </div>
   );
 };
 

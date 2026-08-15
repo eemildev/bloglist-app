@@ -41,7 +41,9 @@ const NewBlog = () => {
           />
 
           {state.errors.title && (
-            <p style={{ color: "red" }}>{state.errors.title}</p>
+            <p data-testid="title-error" style={{ color: "red" }}>
+              {state.errors.title}
+            </p>
           )}
         </div>
         <div className="flex flex-col">
@@ -57,7 +59,9 @@ const NewBlog = () => {
           />
 
           {state.errors.author && (
-            <p style={{ color: "red" }}>{state.errors.author}</p>
+            <p data-testid="author-error" style={{ color: "red" }}>
+              {state.errors.author}
+            </p>
           )}
         </div>
         <div className="flex flex-col">
@@ -73,10 +77,12 @@ const NewBlog = () => {
           />
 
           {state.errors.url && (
-            <p style={{ color: "red" }}>{state.errors.url}</p>
+            <p data-testid="url-error" style={{ color: "red" }}>
+              {state.errors.url}
+            </p>
           )}
         </div>
-        <button className="btn" type="submit">
+        <button data-testid="create-blog-button" className="btn" type="submit">
           Create
         </button>
       </form>

@@ -10,8 +10,6 @@ export default function RegisterPage() {
 
   const { data: session } = useSession()
   
-    
-    
   const initialState = {
     errors: {
       username: undefined,
@@ -60,7 +58,9 @@ export default function RegisterPage() {
           />
 
           {state.errors.username && (
-            <p style={{ color: "red" }}>{state.errors.username}</p>
+            <p data-testid="username-error" style={{ color: "red" }}>
+              {state.errors.username}
+            </p>
           )}
         </div>
         <div className="flex flex-col">
@@ -76,7 +76,9 @@ export default function RegisterPage() {
           />
 
           {state.errors.name && (
-            <p style={{ color: "red" }}>{state.errors.name}</p>
+            <p data-testid="name-error" style={{ color: "red" }}>
+              {state.errors.name}
+            </p>
           )}
         </div>
         <div className="flex flex-col">
@@ -89,7 +91,9 @@ export default function RegisterPage() {
           <input id="password" type="password" name="password" required />
 
           {state.errors.password && (
-            <p style={{ color: "red" }}>{state.errors.password}</p>
+            <p data-testid="password-error" style={{ color: "red" }}>
+              {state.errors.password}
+            </p>
           )}
         </div>
         <div className="flex flex-col">
@@ -107,10 +111,12 @@ export default function RegisterPage() {
           />
 
           {state.errors.confirm_password && (
-            <p style={{ color: "red" }}>{state.errors.confirm_password}</p>
+            <p data-testid="passwordConfirm-error" style={{ color: "red" }}>
+              {state.errors.confirm_password}
+            </p>
           )}
         </div>
-        <button className="btn" type="submit">
+        <button data-testid="register-button" className="btn" type="submit">
           Register
         </button>
       </form>

@@ -63,14 +63,14 @@ const BlogActions = ({
       {isInReadingList ? (
         <form action={handleRemove}>
           <input type="hidden" name="id" value={blog.id} />
-          <button className="btn" type="submit">
+          <button data-testid="remove-from-reading-list-button" className="btn" type="submit">
             Remove from reading list
           </button>
         </form>
       ) : (
         <form action={handleAdd}>
           <input type="hidden" name="id" value={blog.id} />
-          <button className="btn" type="submit">
+          <button data-testid="add-to-reading-list-button" className="btn" type="submit">
             Add to reading list
           </button>
         </form>
